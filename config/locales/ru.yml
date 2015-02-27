@@ -1,0 +1,5 @@
+ru:
+  devise:
+    failure:
+      user:
+        not_found_in_database: Пользователь не найден
