@@ -1,7 +1,21 @@
 Rails.application.routes.draw do
+  get 'projects/index'
+
+  get 'projects/show'
+
+  get 'projects/new'
+
+  get 'task_list/index'
+
   devise_for :users
   devise_scope :user do
-    root 'devise/sessions#new'
+    authenticate :user do
+      root 'projects#index', as: :auth_user
+    end
+
+    unauthenticated :user do
+      root 'devise/sessions#new'
+    end
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
