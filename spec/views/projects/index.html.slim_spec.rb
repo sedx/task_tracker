@@ -15,4 +15,15 @@ RSpec.describe "projects/index.html.slim", type: :view do
     render
     expect(rendered).to include("Обратитесь к администратору")
   end
+
+  it 'should display avalible projects' do
+    user = create :user
+    project = create :project
+    user.projects = [project]
+    # user.save
+    controller.stub(:current_user).and_return(user)
+    render
+    expect(rendered).to include(project.name)
+  end
+
 end

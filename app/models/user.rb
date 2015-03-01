@@ -8,4 +8,12 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :projects
 
+  def available_projects
+    if self.admin?
+      Project.all
+    else
+      self.projects
+    end
+  end
+
 end

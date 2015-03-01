@@ -73,6 +73,7 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    ffaker (1.32.1)
     foundation-rails (5.5.1.0)
       railties (>= 3.1.0)
       sass (>= 3.3.0, < 3.5)
@@ -212,6 +213,7 @@ DEPENDENCIES
   devise (~> 3.4)
   devise-russian (~> 2.0)
   factory_girl_rails (~> 4.0)
+  ffaker
   foundation-rails (~> 5.5.1)
   jbuilder (~> 2.0)
   jquery-rails

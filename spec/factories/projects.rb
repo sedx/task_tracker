@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :project do
-    name 'Test Project'
+    name Faker::Company.name
   end
 
 end
