@@ -1,16 +1,9 @@
 Rails.application.routes.draw do
-  get 'projects/index'
-
-  get 'projects/show'
-
-  get 'projects/new'
-
-  get 'task_list/index'
-
   devise_for :users
   devise_scope :user do
     authenticate :user do
       root 'projects#index', as: :auth_user
+      resources :projects, except:[:index]
     end
 
     unauthenticated :user do

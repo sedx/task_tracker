@@ -1,2 +1,7 @@
-h1 Projects#index
-p Find me in app/views/projects/index.html.slim
+-if current_user.admin? && @projects.blank?
+  h1 В данный момент нет ни одного проекта. Создайте проект
+-elsif current_user.projects.count == 0
+  h1 Вы не назначены ни на один проект. Обратитесь к администратору
+-else
+  -@projects.each do |project|
+    = project
