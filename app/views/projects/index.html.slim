@@ -4,5 +4,5 @@
   h1 Вы не назначены ни на один проект. Обратитесь к администратору
 -else
   -current_user.available_projects.each do |project|
-    =project.name
+    =link_to project.name, project_path(project)
     br
