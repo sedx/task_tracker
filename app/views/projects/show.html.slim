@@ -1,2 +1,8 @@
-h1 Projects#show
-p Find me in app/views/projects/show.html.slim
+a href="#" data-reveal-id="add_task"class="button"
+  |Добавить таск
+
+#add_task.reveal-modal data-reveal=""
+  h2 Создание нового таска
+  =render('layouts/task_form')
+  a.close-reveal-modal
+    |&#215;

@@ -9,11 +9,12 @@ RSpec.describe ProjectsController, type: :controller do
     end
   end
 
-  describe "GET #new" do
+  describe "GET #show" do
     it "returns http success" do
-      get :new
+      get :show
       expect(response).to have_http_status(:success)
     end
   end
+
 
 end

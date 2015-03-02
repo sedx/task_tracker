@@ -1,10 +1,19 @@
 Rails.application.routes.draw do
+  get 'tasks/create'
+
+  get 'tasks/update'
+
+  get 'tasks/edit'
+
+  get 'tasks/destroy'
+
   devise_for :users
   devise_scope :user do
     authenticate :user do
       root 'projects#index', as: :auth_user
       ActiveAdmin.routes(self)
-      resources :projects, except:[:index]
+      resources :projects, only:[:show]
+      resources :tasks
     end
 
     unauthenticated :user do

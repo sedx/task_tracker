@@ -54,6 +54,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    acts-as-taggable-on (3.4.4)
+      activerecord (>= 3.2, < 5)
     arbre (1.0.3)
       activesupport (>= 3.0.0)
     arel (6.0.0)
@@ -255,6 +257,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
+  acts-as-taggable-on (~> 3.4)
   byebug
   coffee-rails (~> 4.1.0)
   database_cleaner
@@ -262,6 +265,8 @@ DEPENDENCIES
   devise-russian (~> 2.0)
   factory_girl_rails (~> 4.0)
   ffaker
+  formtastic
+  formtastic_i18n
   foundation-rails (~> 5.5.1)
   jbuilder (~> 2.0)
   jquery-rails
