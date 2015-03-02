@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     authenticate :user do
       root 'projects#index', as: :auth_user
+      ActiveAdmin.routes(self)
       resources :projects, except:[:index]
     end
 

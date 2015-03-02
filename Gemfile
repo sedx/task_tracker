@@ -37,7 +37,7 @@ gem 'devise','~> 3.4'
 gem 'devise-russian','~> 2.0'
 gem 'russian'
 gem 'slim-rails'
-
+gem 'activeadmin', github: 'activeadmin'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
