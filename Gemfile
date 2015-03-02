@@ -42,6 +42,7 @@ gem 'acts-as-taggable-on', '~> 3.4'
 gem 'formtastic'
 gem 'formtastic_i18n'
 gem 'state_machine'
+gem 'tzinfo-data', platform: :mingw
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'

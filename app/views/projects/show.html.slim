@@ -3,6 +3,7 @@ a href="#" data-reveal-id="add_task"class="button"
 
 #add_task.reveal-modal data-reveal=""
   h2 Создание нового таска
-  =render('layouts/task_form')
+  #task_form
+    =render('layouts/task_form')
   a.close-reveal-modal
     |&#215;

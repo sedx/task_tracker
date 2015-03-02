@@ -1,0 +1,8 @@
+=semantic_form_for @task, remote: true do |f|
+  =f.inputs do
+    =f.input :project, as: :hidden, input_html:{value: @task.project.id}
+    =f.input :title
+    =f.input :description
+    =f.input :time
+    =f.input :tag_list, as: :string
+  =f.actions
