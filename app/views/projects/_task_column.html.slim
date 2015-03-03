@@ -1,8 +1,8 @@
 .large-2.column.connectedSortable.panel id="#{state}"
   h4 =t("projects.state.#{state}")
   -@tasks.with_state(state).each do |task|
-    =link_to '#', :'data-reveal-id'=> "task_#{task.id}_modal" do
-      li.ui-state-default.task id="task_#{task.id}"
+    li.ui-state-default.task id="task_#{task.id}"
+      =link_to '#', :'data-reveal-id'=> "task_#{task.id}_modal" do
         =task.title
     .reveal-modal id="task_#{task.id}_modal" data-reveal=''
       =render('tasks/task_info', task: task)

@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates :name, length: {minimum: 2 }, unless: lambda{self.name.blank?}
 
   has_and_belongs_to_many :projects
+  has_many :tasks
 
   def available_projects
     if self.admin?

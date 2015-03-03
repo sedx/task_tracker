@@ -4,8 +4,9 @@ class Task < ActiveRecord::Base
   validates :title, presence:{message:'Укажите заголовок'}
   validates :title, length:{minimum:3}, unless: lambda{self.title.blank?}
 
+  belongs_to :user
   belongs_to :project, dependent: :destroy
-  accepts_nested_attributes_for :project
+  # accepts_nested_attributes_for :project
 
   attr_accessor :message
 

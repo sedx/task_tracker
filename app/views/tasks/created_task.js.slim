@@ -1,3 +1,8 @@
 |$('#add_task').foundation('reveal', 'close');
 |$('#new_task')[0].reset();
-|$("##{@task.state_name}").append('<li class="ui-state-default task ui-sortable-handle" id="task_#{@task.id}">#{@task.title}</li>');
+|$("##{@task.state_name}").append('<a data-reveal-id="task_#{@task.id}_modal" href="#">\
+   <li class="ui-state-default task ui-sortable-handle" id="task_#{@task.id}">\
+   #{@task.title}\
+   </li></a>\
+   <div class="reveal-modal" data-reveal="" id="task_#{@task.id}_modal">\
+    #{escape_javascript(render('tasks/task_info', task: @task))}</div>');

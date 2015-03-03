@@ -1,7 +1,6 @@
 class TasksController < ApplicationController
   def create
-    @project = Project.find(params[:task][:project])
-    @task = @project.tasks.new(task_params)
+    @task = Task.new(task_params)
     respond_to do |format|
       if @task.save
         format.js {render 'created_task'}
@@ -47,6 +46,6 @@ class TasksController < ApplicationController
 
   private
     def task_params
-      params.require(:task).permit(:title,:description,:time,:tag_list)
+      params.require(:task).permit(:title,:description,:tag_list, :user_id, :project_id, :state)
     end
 end

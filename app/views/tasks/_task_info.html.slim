@@ -1,7 +1,15 @@
 h5 =task.title
-=task.description
+- if task.user
+  |Назначена на #{task.user.name}
+-else
+  |Не назначена
 br
-=task.time
-br
-=task.tag_list
-br
+|Оценка #{time_to_string(task.time)}
+p
+  b
+    |Описание
+p
+  =task.description
+p
+  |Теги:
+  =<task.tag_list
