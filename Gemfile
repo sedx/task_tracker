@@ -41,7 +41,7 @@ gem 'activeadmin', github: 'activeadmin'
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'formtastic'
 gem 'formtastic_i18n'
-gem 'state_machine'
+gem 'state_machine', git:'https://github.com/pluginaweek/state_machine.git'
 gem 'tzinfo-data', platform: :mingw
 
 group :development, :test do

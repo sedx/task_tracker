@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       ActiveAdmin.routes(self)
       resources :projects, only:[:show]
       resources :tasks
+      post '/move_task', to: 'tasks#move_task'
     end
 
     unauthenticated :user do

@@ -1,2 +1,3 @@
 |$('#add_task').foundation('reveal', 'close');
 |$('#new_task')[0].reset();
+|$("##{@task.state_name}").append('<li class="ui-state-default task ui-sortable-handle" id="task_#{@task.id}">#{@task.title}</li>');

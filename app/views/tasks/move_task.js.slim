@@ -1,0 +1,3 @@
+-unless @task.message.blank?
+  |alert('#{@task.message}');
+|$("#task_#{@task.id}").appendTo("##{@task.state_name}");
