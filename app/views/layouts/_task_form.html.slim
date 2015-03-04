@@ -2,7 +2,7 @@
   =f.inputs do
     =f.input :project_id, as: :hidden, input_html:{value: @task.project.id}
     =f.input :title
-    =f.input :user, as: :select
+    =f.input :user, as: :select, collection: @task.project.users
     =f.input :description
     =f.input :time
     =f.input :tag_list, as: :string

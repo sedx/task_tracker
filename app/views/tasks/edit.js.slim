@@ -1,0 +1,8 @@
+|$("#task_#{@task.id}_modal").append("<div class='edit_task'></div>");
+|$("#task_#{@task.id}_modal .edit_task").html("#{escape_javascript(render('layouts/task_form'))}");
+|$("#task_#{@task.id}_modal .task_info").hide();
+|$("#task_#{@task.id}_modal .edit_task").append("#{escape_javascript(link_to "Отменить редактирование", '#', class:'cancel_edit')}");
+|$("#task_#{@task.id}_modal .cancel_edit").click(function(){
+  $("#task_#{@task.id}_modal .task_info").show();
+  $("#task_#{@task.id}_modal .edit_task").remove();
+  });

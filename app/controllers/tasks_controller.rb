@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
+    @task.current_user = current_user
     respond_to do |format|
       if @task.save
         format.js {render 'created_task'}
@@ -11,9 +12,17 @@ class TasksController < ApplicationController
   end
 
   def update
+    @task = Task.find(params[:id])
+    @task.update_attributes task_params
+    if @task.save
+    else
+      render 'edit'
+    end
+
   end
 
   def edit
+    @task= Task.find(params[:id])
   end
 
   def destroy
@@ -21,6 +30,7 @@ class TasksController < ApplicationController
 
   def move_task
     @task = Task.find(params[:task])
+    @task.current_user = current_user
     # TODO Если честно мне не очень нравится что сообщения присваиваются в контроллере
     # но через колбэки state_machine иди через эвенты мне не удалось
     #TODO ПОСМОТРЕТЬ ЧЕРЕЗ КОЛБЭК BEFORE_
@@ -42,7 +52,13 @@ class TasksController < ApplicationController
                     when :archived
                       @task.archive
                   end
-    end
+  end
+
+  def assign
+    @task = Task.find(params[:task_id])
+    @task.current_user= current_user
+    @task.assign(User.find(params[:task][:user_id]))
+  end
 
   private
     def task_params

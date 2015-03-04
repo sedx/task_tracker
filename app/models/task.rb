@@ -6,9 +6,10 @@ class Task < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :project, dependent: :destroy
+  has_many :task_histories
   # accepts_nested_attributes_for :project
 
-  attr_accessor :message
+  attr_accessor :message, :current_user
 
   state_machine initial: :analyze do
     state :analyze, value: 0
@@ -37,5 +38,27 @@ class Task < ActiveRecord::Base
     event :archive do
       transition all => :archived
     end
+
+    after_transition :write_history
   end
+
+  def assign(user)
+    self.user = user
+    self.save!
+    write_history
+  end
+  private
+
+    def write_history
+      history_hash={date:Time.now,user_id:current_user.id}
+      unless self.user_id_changed?
+        history_hash[:type_of_event]= :move
+        history_hash[:change]=self.state_name
+      else
+        history_hash[:type_of_event] = :assign
+        history_hash[:change]=self.user_id
+      end
+      self.task_histories.create(history_hash)
+    end
+
 end

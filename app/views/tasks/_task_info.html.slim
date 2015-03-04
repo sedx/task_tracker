@@ -1,15 +1,43 @@
-h5 =task.title
-- if task.user
-  |Назначена на #{task.user.name}
--else
-  |Не назначена
-br
-|Оценка #{time_to_string(task.time)}
-p
-  b
-    |Описание
-p
-  =task.description
-p
-  |Теги:
-  =<task.tag_list
+.task_info
+  .row
+    .large-10.column
+      h5 =task.title
+    .large-2.column
+      =link_to "Редактирвоать",edit_task_path(task), remote:true
+
+  span#assign
+    - if task.user
+      |Назначена на
+      =<task.user.name
+    -else
+      |Не назначена
+  br
+  =semantic_form_for task, remote: true, url: task_assign_path(task.id) do |f|
+    =f.inputs do
+      =f.input :user, collection: task.project.users
+    =f.actions
+    end
+  end
+  br
+  |Оценка #{time_to_string(task.time)}
+  p
+    b
+      |Описание
+  p
+    =task.description
+  p
+    |Теги:
+    =<task.tag_list
+  p
+    b История
+    br
+    -task.task_histories.each do |event|
+      -if event.type_of_event == "move"
+        ="#{event.user.name} переместил таску в "
+        =t("projects.state.#{event.change}")
+        ="(#{event.date})"
+      -elsif event.type_of_event == "assign"
+        ="#{event.user.name} назначил таску на "
+        =User.find(event.change).name
+        ="(#{event.date})"
+      br

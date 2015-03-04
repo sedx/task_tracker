@@ -13,7 +13,9 @@ Rails.application.routes.draw do
       root 'projects#index', as: :auth_user
       ActiveAdmin.routes(self)
       resources :projects, only:[:show]
-      resources :tasks
+      resources :tasks do
+        patch '/assign', to: 'tasks#assign', as: :assign
+      end
       post '/move_task', to: 'tasks#move_task'
     end
 
