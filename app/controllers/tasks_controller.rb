@@ -13,8 +13,7 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     @task.update_attributes task_params
-    if @task.save
-    else
+    unless @task.save
       render 'edit'
     end
 
