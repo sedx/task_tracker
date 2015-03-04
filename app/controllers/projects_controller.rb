@@ -8,6 +8,4 @@ class ProjectsController < ApplicationController
     @tasks = @project.tasks
   end
 
-  def new
-  end
 end

@@ -1,7 +1,6 @@
 class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
-    @task.current_user = current_user
     respond_to do |format|
       if @task.save
         format.js {render 'created_task'}
@@ -32,32 +31,35 @@ class TasksController < ApplicationController
 
   def move_task
     @task = Task.find(params[:task])
-    @task.current_user = current_user
-    # TODO Если честно мне не очень нравится что сообщения присваиваются в контроллере
-    # но через колбэки state_machine иди через эвенты мне не удалось
-    #TODO ПОСМОТРЕТЬ ЧЕРЕЗ КОЛБЭК BEFORE_
-    move_result = case params[:to].to_sym
-                    when :analyze
-                      @task.message = 'На анализ можно отдавать
-                                      только задачи в разработке'
-                      @task.to_analyze
-                    when :doing
-                      @task.to_do
-                    when :testing
-                      @task.message = 'В тестирование задачи отдаются
-                                      только после разработки'
-                      @task.to_test
 
-                    when :released
-                      @task.message = 'Релизить можно только протестированные таски'
-                      @task.to_release
-                    when :archived
-                      @task.archive
-                  end
+    # передаем текущего пользователя чтобы записать в историю
+    @task.current_user = current_user
+    # Если честно мне не очень нравится что сообщения присваиваются в контроллере
+    # но через колбэки state_machine иди через эвенты мне не удалось, возможно я что-тоделал не так
+    case params[:to].to_sym
+    when :analyze
+      unless @task.to_analyze
+        @task.message = 'На анализ можно отдавать только задачи в разработке'
+      end
+    when :doing
+      @task.to_do
+    when :testing
+      unless @task.to_test
+        @task.message = 'В тестирование задачи отдаются только после разработки'
+      end
+
+    when :released
+      unless @task.to_release
+        @task.message = 'Релизить можно только протестированные таски'
+      end
+    when :archived
+      @task.archive
+  end
   end
 
   def assign
     @task = Task.find(params[:task_id])
+    # передаем текущего пользователя чтобы записать в историю
     @task.current_user= current_user
     @task.assign(User.find(params[:task][:user_id]))
   end
