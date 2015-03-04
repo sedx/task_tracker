@@ -3,11 +3,11 @@ class Task < ActiveRecord::Base
 
   validates :title, presence:{message:'Укажите заголовок'}
   validates :title, length:{minimum:3}, unless: lambda{self.title.blank?}
+  validates :time, format: {with:/\A\d+\z/,message:"Время указывается в минутах"}, unless: lambda{self.time.blank?}
 
   belongs_to :user
   belongs_to :project
-  has_many :task_histories
-  # accepts_nested_attributes_for :project
+  has_many :task_histories, dependent: :destroy
 
   attr_accessor :message, :current_user
 

@@ -1,28 +1,21 @@
-== README
+== Нстройка
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Выполните следующие шаги
+* Склонируйте репозиторий
 
-Things you may want to cover:
+* Настройте подключение к БД
 
-* Ruby version
+* Создате БД и выполните миграции
 
-* System dependencies
+* Запустите сервер
 
-* Configuration
+* Зарегистрируйтесь
 
-* Database creation
+* Выполните `rake admin:crate_admin`
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+== Реализовано
+* Авторизация и Аутентификация пользователей
+* Создание проектов админом
+* Назначение пользователей на проект
+* Создание, Редактирвоание и удаление таски
+* Изменение статсуа таски перетаскиванием

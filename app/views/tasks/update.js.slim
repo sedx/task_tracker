@@ -1,0 +1,5 @@
+|$("#task_#{@task.id}_modal .task_info").remove();
+|$("#task_#{@task.id}_modal").html("#{escape_javascript(render('tasks/task_info',task: @task))}");
+|$("li#task_#{@task.id} > a").html("#{@task.title}");
+|$("#task_#{@task.id}_modal .task_info").show();
+|$("#task_#{@task.id}_modal .edit_task").remove();

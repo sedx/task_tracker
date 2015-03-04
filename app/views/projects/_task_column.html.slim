@@ -1,4 +1,4 @@
-.large-2.column.connectedSortable.panel id="#{state}"
+.large-2.column.connectedSortable.panel id="#{state}" class=('end' if state == :archived) class=('large-offset-1' if state == :analyze)
   h4 =t("projects.state.#{state}")
   -@tasks.with_state(state).each do |task|
     li.ui-state-default.task id="task_#{task.id}"

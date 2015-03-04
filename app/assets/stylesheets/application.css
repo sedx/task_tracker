@@ -14,3 +14,10 @@
  *= require_self
  *= require foundation_and_overrides
  */
+
+#container{
+    padding: 0 40px;
+}
+
+#task_description{
+}

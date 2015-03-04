@@ -1,3 +1,4 @@
+|$("#task_#{@task.id}_modal .edit_task").remove();
 |$("#task_#{@task.id}_modal").append("<div class='edit_task'></div>");
 |$("#task_#{@task.id}_modal .edit_task").html("#{escape_javascript(render('layouts/task_form'))}");
 |$("#task_#{@task.id}_modal .task_info").hide();

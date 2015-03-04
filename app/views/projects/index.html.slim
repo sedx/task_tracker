@@ -3,6 +3,11 @@
 -elsif current_user.available_projects.length == 0
   h1 Вы не назначены ни на один проект. Обратитесь к администратору
 -else
-  -current_user.available_projects.each do |project|
-    =link_to project.name, project_path(project)
-    br
+  h3 На Вас #{current_user.tasks.count} #{Russian::pluralize(current_user.tasks.count, "задача","задачи","задач")}
+  ul.large-block-grid-4
+    -current_user.available_projects.each do |project|
+      ul.pricing-table.large-3.column class=('end' if project == current_user.available_projects.last)
+        li.title #{project.name}
+        li.price Количество задач: #{project.tasks.count}
+        li.cta-button
+          =link_to "Перейти", project_path(project), class:'button'

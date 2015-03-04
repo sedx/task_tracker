@@ -14,11 +14,9 @@
       |Не назначена
   br
   =semantic_form_for task, remote: true, url: task_assign_path(task.id) do |f|
-    =f.inputs do
-      =f.input :user, collection: task.project.users
-    =f.actions
-    end
-  end
+      =f.input :user, collection: task.project.users, label:"Назначить на"
+      =f.action :submit, label:"Назначить"
+
   br
   |Оценка #{time_to_string(task.time)}
   p

@@ -9,5 +9,5 @@ ru:
       analyze: Анализ
       doing: Разработка
       testing: Тестирование
-      released: Готово к релизу
-      archved: Заархивировано
+      released: Реализованно
+      archived: Архив

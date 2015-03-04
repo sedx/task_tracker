@@ -7,10 +7,38 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <%if !current_user.nil? %>
+    <nav class="top-bar" data-topbar role="navigation">
+          <section class="top-bar-section">
 
-    <%= yield %>
+            <!-- Right Nav Section -->
+            <ul class="left">
+              <li class="has-dropdown">
+                <%= link_to "Проекты", root_path  %>
+                <ul class="dropdown">
+                      <% current_user.available_projects.each do |project| %>
+                      <li><%= link_to project.name, project_path(project) %></li>
+                      <%end  %>
+                </ul>
+              </li>
+            </ul>
+        <% if current_user.admin? %>
+            <ul class="left">
+              <li><%= link_to "Админка", admin_root_path %></li>
+            </ul>
+        <%end %>
+          </section>
+    </nav>
+    <%end %>
 
+    <% if !notice.blank? %>
+        <div data-alert class="alert-box"><%= notice %></div>
+    <% end %>
+    <% if !alert.blank? %>
+        <div data-alert class="alert-box warning "><%= alert %></div></p>
+    <% end %>
+    <div id="container">
+        <%= yield %>
+    </div>
 </body>
 </html>

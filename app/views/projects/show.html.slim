@@ -1,13 +1,11 @@
-a href="#" data-reveal-id="add_task"class="button"
-  |Добавить таск
--unless flash[:error].blank?
-  =flash[:error]
 .row
-  =render('task_column',state: :analyze)
-  =render('task_column',state: :doing)
-  =render('task_column',state: :testing)
-  =render('task_column',state: :released)
-  =render('task_column',state: :archived)
+  a href="#" data-reveal-id="add_task"class="button"
+    |Добавить таск
+=render('task_column',state: :analyze)
+=render('task_column',state: :doing)
+=render('task_column',state: :testing)
+=render('task_column',state: :released)
+=render('task_column',state: :archived)
 #add_task.reveal-modal data-reveal=""
   h2 Создание нового таска
   #task_form
