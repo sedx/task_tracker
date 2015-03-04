@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-  get 'tasks/create'
-
-  get 'tasks/update'
-
-  get 'tasks/edit'
-
-  get 'tasks/destroy'
-
   devise_for :users
   devise_scope :user do
     authenticate :user do

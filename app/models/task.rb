@@ -5,7 +5,7 @@ class Task < ActiveRecord::Base
   validates :title, length:{minimum:3}, unless: lambda{self.title.blank?}
 
   belongs_to :user
-  belongs_to :project, dependent: :destroy
+  belongs_to :project
   has_many :task_histories
   # accepts_nested_attributes_for :project
 
